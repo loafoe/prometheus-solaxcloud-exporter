@@ -9,17 +9,19 @@ import (
 )
 
 var listenAddr string
-var debugLog string
+var debug bool
 
 func main() {
-	flag.StringVar(&debugLog, "debuglog", "", "The debug log to dump traffic in")
-	flag.StringVar(&listenAddr, "listen", "0.0.0.0:8889", "Listen address for HTTP metrics")
+	flag.BoolVar(&debug, "debug", false, "Enable debugging")
+	flag.StringVar(&listenAddr, "listen", "0.0.0.0:8887", "Listen address for HTTP metrics")
 	flag.Parse()
 
 	sn := os.Getenv("SOLAXCLOUD_SN")
 	tokenId := os.Getenv("SOLAXCLOUD_TOKEN_ID")
 
-	resp, err := solaxcloud.GetRealtimeInfo(solaxcloud.WithSNAndTokenID(sn, tokenId))
+	resp, err := solaxcloud.GetRealtimeInfo(
+		solaxcloud.WithSNAndTokenID(sn, tokenId),
+		solaxcloud.WithDebug(debug))
 	if err != nil {
 		fmt.Printf("error: %v\n", err)
 		return
