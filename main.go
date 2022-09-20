@@ -48,7 +48,6 @@ var (
 		Help: "The inverter power on status",
 	}, []string{
 		"sn",
-		"inverter_sn",
 	})
 )
 
@@ -74,7 +73,7 @@ func main() {
 				time.Sleep(time.Second * 60) // 5 minute resolution, so we poll every minute for now
 			}
 			sleep = true
-			ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+			ctx, cancel := context.WithTimeout(context.Background(), 20*time.Second)
 
 			fmt.Printf("calling SolaxCloud...\n")
 			resp, err := solaxcloud.GetRealtimeInfo(ctx,
@@ -83,7 +82,7 @@ func main() {
 			cancel()
 			if err != nil {
 				fmt.Printf("error: %v\n", err)
-				upMetric.WithLabelValues(sn, "").Set(0)
+				upMetric.WithLabelValues(sn).Set(0)
 				if errors.Is(err, context.DeadlineExceeded) {
 					fmt.Printf("not sleeping\n")
 					sleep = false
@@ -93,7 +92,7 @@ func main() {
 			yieldTodayMetric.WithLabelValues(resp.Result.InverterSN).Set(resp.Result.YieldToday)
 			yieldTotalMetrics.WithLabelValues(resp.Result.InverterSN).Set(resp.Result.YieldTotal)
 			acPowerMetric.WithLabelValues(resp.Result.InverterSN).Set(resp.Result.ACPower)
-			upMetric.WithLabelValues(sn, resp.Result.InverterSN).Set(1.0)
+			upMetric.WithLabelValues(sn).Set(1.0)
 		}
 	}()
 
