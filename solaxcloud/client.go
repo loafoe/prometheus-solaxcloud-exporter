@@ -1,13 +1,14 @@
 package solaxcloud
 
 import (
+	"context"
 	"encoding/json"
 	"net/http"
 
 	"github.com/go-resty/resty/v2"
 )
 
-func GetRealtimeInfo(opts ...OptionFunc) (*Response, error) {
+func GetRealtimeInfo(ctx context.Context, opts ...OptionFunc) (*Response, error) {
 	client := resty.New()
 
 	request := client.R()
@@ -21,7 +22,7 @@ func GetRealtimeInfo(opts ...OptionFunc) (*Response, error) {
 		}
 		request = r
 	}
-	resp, err := request.Send()
+	resp, err := request.SetContext(ctx).Send()
 	if err != nil {
 		return nil, err
 	}

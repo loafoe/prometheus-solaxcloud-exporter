@@ -16,25 +16,25 @@ type result struct {
 	Error          string  `json:"-"`
 	InverterSN     string  `json:"inverterSN"`
 	SN             string  `json:"sn"`
-	ACPower        int     `json:"acpower"`
+	ACPower        float64 `json:"acpower"`
 	YieldToday     float64 `json:"yieldtoday"`
 	YieldTotal     float64 `json:"yieldtotal"`
-	FeedInPower    int     `json:"feedinpower"`
-	FeedInEnergy   int     `json:"feedinenergy"`
-	ConsumeEnergy  int     `json:"consumeenergy"`
-	FeedInPowerM2  int     `json:"feedinpowerM2"`
-	Soc            int     `json:"soc"`
-	Peps1          int     `json:"peps1"`
-	Peps2          int     `json:"peps2"`
-	Peps3          int     `json:"peps3"`
+	FeedInPower    float64 `json:"feedinpower"`
+	FeedInEnergy   float64 `json:"feedinenergy"`
+	ConsumeEnergy  float64 `json:"consumeenergy"`
+	FeedInPowerM2  float64 `json:"feedinpowerM2"`
+	Soc            float64 `json:"soc"`
+	Peps1          float64 `json:"peps1"`
+	Peps2          float64 `json:"peps2"`
+	Peps3          float64 `json:"peps3"`
 	InverterType   string  `json:"inverterType"`
 	InverterStatus string  `json:"inverterStatus"`
 	UploadTime     string  `json:"uploadTime"`
-	BatPower       int     `json:"batPower"`
-	PowerDC1       int     `json:"powerdc1"`
-	PowerDC2       int     `json:"powerdc2"`
-	PowerDC3       *int    `json:"powerdc3,omitempty"`
-	PowerDC4       *int    `json:"powerdc4,omitempty"`
+	BatPower       float64 `json:"batPower"`
+	PowerDC1       float64 `json:"powerdc1,omitempty"`
+	PowerDC2       float64 `json:"powerdc2,omitempty"`
+	PowerDC3       float64 `json:"powerdc3,omitempty"`
+	PowerDC4       float64 `json:"powerdc4,omitempty"`
 	BatStatus      string  `json:"batStatus"`
 }
 

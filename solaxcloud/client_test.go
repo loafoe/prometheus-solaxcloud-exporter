@@ -1,6 +1,7 @@
 package solaxcloud_test
 
 import (
+	"context"
 	"io"
 	"net/http"
 	"net/http/httptest"
@@ -68,7 +69,9 @@ func TestGetRealtimeInfo(t *testing.T) {
 }`)
 	})
 
-	resp, err := solaxcloud.GetRealtimeInfo(solaxcloud.WithURL(getURL(serverSolaxCloud.URL)))
+	ctx := context.Background()
+
+	resp, err := solaxcloud.GetRealtimeInfo(ctx, solaxcloud.WithURL(getURL(serverSolaxCloud.URL)))
 	if !assert.Nil(t, err) {
 		return
 	}
@@ -96,7 +99,9 @@ func TestGetRealtimeInfoError(t *testing.T) {
 }`)
 	})
 
-	resp, err := solaxcloud.GetRealtimeInfo(solaxcloud.WithURL(getURL(serverSolaxCloud.URL)))
+	ctx := context.Background()
+
+	resp, err := solaxcloud.GetRealtimeInfo(ctx, solaxcloud.WithURL(getURL(serverSolaxCloud.URL)))
 	if !assert.Nil(t, err) {
 		return
 	}
