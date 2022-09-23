@@ -2,7 +2,7 @@
 
 Prometheus exporter for [SolaxCloud](https://www.solaxcloud.com) data. Resolution is fixed at 5 minutes.
 
-> If you prefer real-time data, please have a look at the [promethues-solaxrd-exporter](https://github.com/loafoe/prometheus-solaxrt-exporter) project instead
+> If you prefer real-time data, please have a look at the [promethues-solaxrt-exporter](https://github.com/loafoe/prometheus-solaxrt-exporter) project instead
 
 ## Install
 
